@@ -1,0 +1,611 @@
+{
+	"info": {
+		"_postman_id": "c72cffb8-6ddc-4c07-8e8c-e11df6011c68",
+		"name": "VK",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25095634"
+	},
+	"item": [
+		{
+			"name": "photos.CreateAlbum",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonObject = JSON.parse(responseBody);\r",
+							"pm.collectionVariables.set(\"album_id\", jsonObject.response.id);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "title",
+							"value": "new",
+							"type": "text"
+						},
+						{
+							"key": "access_token",
+							"value": "{{access_token}}",
+							"type": "text"
+						},
+						{
+							"key": "v",
+							"value": "{{v}}",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://api.vk.com/method/photos.createAlbum",
+					"protocol": "https",
+					"host": [
+						"api",
+						"vk",
+						"com"
+					],
+					"path": [
+						"method",
+						"photos.createAlbum"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "photos.getUploadServer",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonObject = JSON.parse(responseBody);\r",
+							"pm.collectionVariables.set(\"upload_url\", jsonObject.response.upload_url);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "access_token",
+							"value": "{{access_token}}",
+							"type": "text"
+						},
+						{
+							"key": "album_id",
+							"value": "{{album_id}}",
+							"type": "text"
+						},
+						{
+							"key": "v",
+							"value": "{{v}}",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://api.vk.com/method/photos.getUploadServer",
+					"protocol": "https",
+					"host": [
+						"api",
+						"vk",
+						"com"
+					],
+					"path": [
+						"method",
+						"photos.getUploadServer"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "photos.upload",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonObject = JSON.parse(responseBody);\r",
+							"pm.collectionVariables.set(\"server\", jsonObject.server);\r",
+							"pm.collectionVariables.set(\"photos_list\", jsonObject.photos_list);\r",
+							"pm.collectionVariables.set(\"hash\", jsonObject.hash);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "album_id",
+							"value": "{{album_id}}",
+							"type": "text"
+						},
+						{
+							"key": "acess_token",
+							"value": "{{access_token}}",
+							"type": "text"
+						},
+						{
+							"key": "v",
+							"value": "{{v}}",
+							"type": "text"
+						},
+						{
+							"key": "file1",
+							"type": "file",
+							"src": "/D:/Медиа/Изображения/Обои/EwMGKwvzEeg.jpg"
+						},
+						{
+							"key": "file2",
+							"type": "file",
+							"src": "/D:/Медиа/Изображения/Обои/PXruThFXvYo.jpg"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{upload_url}}",
+					"host": [
+						"{{upload_url}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "photos.save",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "access_token",
+							"value": "{{access_token}}",
+							"type": "text"
+						},
+						{
+							"key": "server",
+							"value": "{{server}}",
+							"type": "text"
+						},
+						{
+							"key": "album_id",
+							"value": "{{album_id}}",
+							"type": "text"
+						},
+						{
+							"key": "hash",
+							"value": "{{hash}}",
+							"type": "text"
+						},
+						{
+							"key": "photos_list",
+							"value": "{{photos_list}}",
+							"type": "text"
+						},
+						{
+							"key": "v",
+							"value": "{{v}}",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://api.vk.com/method/photos.save",
+					"protocol": "https",
+					"host": [
+						"api",
+						"vk",
+						"com"
+					],
+					"path": [
+						"method",
+						"photos.save"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "photos.get",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonObject = JSON.parse(responseBody);\r",
+							"pm.collectionVariables.set(\"photo_id1\", jsonObject.response.items[0].id);\r",
+							"pm.collectionVariables.set(\"photo_id2\", jsonObject.response.items[1].id);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "access_token",
+							"value": "{{access_token}}",
+							"type": "text"
+						},
+						{
+							"key": "album_id",
+							"value": "{{album_id}}",
+							"type": "text"
+						},
+						{
+							"key": "v",
+							"value": "{{v}}",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://api.vk.com/method/photos.get",
+					"protocol": "https",
+					"host": [
+						"api",
+						"vk",
+						"com"
+					],
+					"path": [
+						"method",
+						"photos.get"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "photos.createComment Photo1",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "access_token",
+							"value": "{{access_token}}",
+							"type": "text"
+						},
+						{
+							"key": "photo_id",
+							"value": "{{photo_id1}}",
+							"type": "text"
+						},
+						{
+							"key": "message",
+							"value": "QA Never Sleeps",
+							"type": "text"
+						},
+						{
+							"key": "v",
+							"value": "{{v}}",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://api.vk.com/method/photos.createComment",
+					"protocol": "https",
+					"host": [
+						"api",
+						"vk",
+						"com"
+					],
+					"path": [
+						"method",
+						"photos.createComment"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "photos.createComment Photo2",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonObject = JSON.parse(responseBody);\r",
+							"pm.collectionVariables.set(\"comment_id\", jsonObject.response);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "access_token",
+							"value": "{{access_token}}",
+							"type": "text"
+						},
+						{
+							"key": "photo_id",
+							"value": "{{photo_id2}}",
+							"type": "text"
+						},
+						{
+							"key": "message",
+							"value": "QA Always Sleeps",
+							"type": "text"
+						},
+						{
+							"key": "v",
+							"value": "{{v}}",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://api.vk.com/method/photos.createComment",
+					"protocol": "https",
+					"host": [
+						"api",
+						"vk",
+						"com"
+					],
+					"path": [
+						"method",
+						"photos.createComment"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "photos.editComment",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "access_token",
+							"value": "{{access_token}}",
+							"type": "text"
+						},
+						{
+							"key": "comment_id",
+							"value": "{{comment_id}}",
+							"type": "text"
+						},
+						{
+							"key": "message",
+							"value": "Hello, world!",
+							"type": "text"
+						},
+						{
+							"key": "v",
+							"value": "{{v}}",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://api.vk.com/method/photos.editComment",
+					"protocol": "https",
+					"host": [
+						"api",
+						"vk",
+						"com"
+					],
+					"path": [
+						"method",
+						"photos.editComment"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "photos.delete",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "access_token",
+							"value": "{{access_token}}",
+							"type": "text"
+						},
+						{
+							"key": "photo_id",
+							"value": "{{photo_id1}}",
+							"type": "text"
+						},
+						{
+							"key": "v",
+							"value": "{{v}}",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://api.vk.com/method/photos.delete",
+					"protocol": "https",
+					"host": [
+						"api",
+						"vk",
+						"com"
+					],
+					"path": [
+						"method",
+						"photos.delete"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "photos.deleteAlbum",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "album_id",
+							"value": "{{album_id}}",
+							"type": "text"
+						},
+						{
+							"key": "access_token",
+							"value": "{{access_token}}",
+							"type": "text"
+						},
+						{
+							"key": "v",
+							"value": "{{v}}",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://api.vk.com/method/photos.deleteAlbum",
+					"protocol": "https",
+					"host": [
+						"api",
+						"vk",
+						"com"
+					],
+					"path": [
+						"method",
+						"photos.deleteAlbum"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "apikey"
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "access_token",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "v",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "album_id",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "upload_url",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "server",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "hash",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "photos_list",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "photo_id1",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "photo_id2",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "comment_id",
+			"value": "",
+			"type": "string"
+		}
+	]
+}
